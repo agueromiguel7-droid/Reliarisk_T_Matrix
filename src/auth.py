@@ -6,6 +6,17 @@ from datetime import datetime
 
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "users.db")
 
+# (username, password_hash, salt, name, role) — hashes generated with _hash_password()
+SEEDED_USERS = [
+    (
+        "myanez",
+        "a8abb6004f67b1d3743dd0d81c8f9a9c7a6a6517332e147e1f8e3b1662e3ee86",
+        "ba21735934a745e23e75368934929f4a",
+        "Medardo Yañez",
+        "user",
+    ),
+]
+
 def _hash_password(password: str, salt: str = None) -> tuple[str, str]:
     """Generates PBKDF2 HMAC SHA-256 hash with a cryptographically secure salt."""
     if not salt:
@@ -54,6 +65,20 @@ def init_auth_db():
             ("admin", pwd_hash, salt, "Administrador del Sistema", "admin", 1)
         )
         conn.commit()
+
+    # Seeded users (precomputed PBKDF2 hashes; plaintext passwords are NOT stored in the repo).
+    # users.db is gitignored and ephemeral on Streamlit Cloud, so these are re-created on startup.
+    for username, pwd_hash, salt, name, role in SEEDED_USERS:
+        cursor.execute("SELECT id FROM users WHERE username = ?", (username,))
+        if not cursor.fetchone():
+            cursor.execute(
+                """
+                INSERT INTO users (username, password_hash, salt, name, role, is_active)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (username, pwd_hash, salt, name, role, 1)
+            )
+    conn.commit()
     conn.close()
 
 def authenticate(username: str, password: str):
