@@ -7,8 +7,8 @@ import pydeck as pdk
 from src.i18n import get_text
 
 def render_dashboard(df):
+    # Subtitle (dash_sub) now lives in the global app bar; avoid repeating it here.
     st.markdown(f"<div class='headline-md'>{get_text('dash_overview')}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='body-sm mb-8'>{get_text('dash_sub')}</div>", unsafe_allow_html=True)
 
     # Ensure numerical columns are ready
     df['IMP_Numeric'] = pd.to_numeric(df.get('IMP_Score', 0), errors='coerce').fillna(0)
@@ -148,7 +148,7 @@ def render_dashboard(df):
     st.markdown("</div>", unsafe_allow_html=True)
 
     # --- 3. Bottom Section: Jerarquización (Ranking) ---
-    st.markdown(f"<div class='headline-md' style='font-size: 1.5rem; margin-top: 1rem;'>{get_text('dash_ranking_title')}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='headline-md' style='font-size: 1.2rem; margin-top: 1rem;'>{get_text('dash_ranking_title')}</div>", unsafe_allow_html=True)
     
     # Final data preparation
     df['IMP_Numeric'] = pd.to_numeric(df.get('IMP_Score', 0), errors='coerce').fillna(0)
