@@ -46,12 +46,6 @@ def main():
     current_user = st.session_state.user or {}
     is_admin = current_user.get("role") == "admin"
 
-    # --- Top Navigation / Header ---
-    st.markdown("<div class='headline-lg'>Reliarisk T-Matrix</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='body-sm'>{get_text('dash_sub')}</div>", unsafe_allow_html=True)
-    
-    st.markdown("<hr style='border-color: var(--outline-variant); margin-top: 1rem; margin-bottom: 2rem;'/>", unsafe_allow_html=True)
-
     # --- Sidebar ---
     with st.sidebar:
         # Logos Implementation with Equal Height
@@ -144,6 +138,20 @@ def main():
                 • <b>15%</b> RGP / GOR (Diseño de instalaciones)
                 </div>
             """, unsafe_allow_html=True)
+
+    # --- Top App Bar (compact, single row) ---
+    st.markdown(
+        '<div class="app-bar">'
+        '<div class="app-bar__brand">'
+        '<span class="app-bar__mark"></span>'
+        '<span class="app-bar__title">Reliarisk <span class="app-bar__title-accent">T-Matrix</span></span>'
+        '<span class="app-bar__sep"></span>'
+        f'<span class="app-bar__subtitle">{get_text("dash_sub")}</span>'
+        '</div>'
+        f'<div class="app-bar__crumb"><span class="app-bar__dot"></span>{page}</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     # --- Routing Views ---
     if page == get_text("nav_users"):
