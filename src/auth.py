@@ -15,6 +15,20 @@ SEEDED_USERS = [
         "Medardo Yañez",
         "user",
     ),
+    (
+        "jfarinas",
+        "fb50cc66f45b6c10db2e7aacf7c4bb63459736a07edfde3080d578c45dae84e5",
+        "c0d44c3212e55a7f49ac910f9168b1fe",
+        "Jose Fariñas",
+        "user",
+    ),
+    (
+        "mleccese",
+        "5a7033a7b42473978ec6a8bdf5badce382f07b79c090c21e21bc6313683362ac",
+        "734634a2f99f7c04105793681bb401fb",
+        "Michele Leccese",
+        "user",
+    ),
 ]
 
 def _hash_password(password: str, salt: str = None) -> tuple[str, str]:
