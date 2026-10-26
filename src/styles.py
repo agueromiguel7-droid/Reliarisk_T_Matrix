@@ -187,6 +187,19 @@ def apply_custom_styles():
         /* Hide default Streamlit elements */
         header { visibility: hidden; }
         footer { visibility: hidden; }
+
+        /* ...but keep the "expand sidebar" button visible (it lives inside the header
+           in recent Streamlit versions; testids vary between versions) */
+        [data-testid="stExpandSidebarButton"],
+        [data-testid="stSidebarCollapsedControl"],
+        [data-testid="collapsedControl"] {
+            visibility: visible !important;
+        }
+        [data-testid="stExpandSidebarButton"] *,
+        [data-testid="stSidebarCollapsedControl"] *,
+        [data-testid="collapsedControl"] * {
+            visibility: visible !important;
+        }
         
         /* Dataframes */
         [data-testid="stDataFrame"] {
