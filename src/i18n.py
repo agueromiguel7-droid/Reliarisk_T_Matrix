@@ -96,7 +96,7 @@ translations = {
         "nav_radar": "Radar MEXICAN",
         "nav_users": "Control de Accesos / Usuarios",
         
-        "dash_overview": "Portfolio Overview",
+        "dash_overview": "Resumen del Portafolio",
         "dash_sub": "Análisis Estratégico de Yacimientos de Baja Permeabilidad (YBP)",
         "dash_filters": "FILTROS DEL PORTAFOLIO",
         "dash_area": "ÁREA CONTRACTUAL",

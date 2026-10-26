@@ -2,8 +2,10 @@ import pandas as pd
 import streamlit as st
 import os
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 @st.cache_data
-def load_data(file_path='Oportunidades Exploratoria YBP.xlsx'):
+def load_data(file_path=os.path.join(PROJECT_ROOT, 'Oportunidades Exploratoria YBP.xlsx')):
     if not os.path.exists(file_path):
         st.error(f"File {file_path} not found.")
         return None

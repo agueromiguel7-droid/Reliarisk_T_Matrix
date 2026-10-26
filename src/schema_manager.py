@@ -2,7 +2,9 @@ import pandas as pd
 import streamlit as st
 import os
 
-MAPPING_PATH = r"d:\3_Trabajo\R2M\Grupo Reliarisk Software\Oportunidades YBP\Reliarisk T-Matrix\Encabezado Español-Ingles.xlsx"
+# Resolve relative to the project root (works locally and on Streamlit Cloud / Linux)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MAPPING_PATH = os.path.join(PROJECT_ROOT, "Encabezado Español-Ingles.xlsx")
 
 @st.cache_data
 def load_schema():
