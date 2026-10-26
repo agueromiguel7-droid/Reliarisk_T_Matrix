@@ -90,9 +90,109 @@ def apply_custom_styles():
         }
         
         .headline-md {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--primary);
+            margin: 0 0 0.75rem 0;
+        }
+
+        /* Main container: reclaim vertical space (Streamlit default top padding is ~6rem) */
+        .block-container,
+        [data-testid="stMainBlockContainer"] {
+            padding-top: 2.75rem !important;
+            padding-bottom: 2rem !important;
+        }
+
+        /* ---------- Compact App Bar ---------- */
+        .app-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 18px;
+            margin-bottom: 1.1rem;
+            background: var(--surface-container-lowest);
+            border: 1px solid rgba(1, 39, 67, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(1, 39, 67, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .app-bar::after {               /* thin brand accent line at the bottom */
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, #0284c7 55%, var(--tertiary-fixed-dim) 100%);
+            opacity: 0.85;
+        }
+        .app-bar__brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+        .app-bar__mark {
+            width: 6px;
+            height: 26px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--tertiary-fixed-dim) 0%, #0284c7 100%);
+            flex-shrink: 0;
+        }
+        .app-bar__title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+        .app-bar__title-accent { color: #0284c7; }
+        .app-bar__sep {
+            width: 1px;
+            height: 20px;
+            background: rgba(1, 39, 67, 0.15);
+            flex-shrink: 0;
+        }
+        .app-bar__subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .app-bar__crumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(2, 132, 199, 0.08);
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .app-bar__dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--tertiary-fixed-dim);
+            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.2);
+        }
+        @media (max-width: 900px) {
+            .app-bar__sep, .app-bar__subtitle { display: none; }
+        }
+        @media (max-width: 560px) {
+            .app-bar__crumb { display: none; }
         }
 
         .label-sm {
